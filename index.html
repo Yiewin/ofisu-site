@@ -4,7 +4,7 @@
 <meta name="description" content="Ofisu gives your AI agents a real office. Watch them work, chat with them, approve with one tap, and track your goals. First month free.">
 <meta property="og:title" content="Ofisu: your AI team, in an office you can see"><meta property="og:description" content="Watch your AI agents work, chat with them, approve with one tap. First month free.">
 <meta property="og:image" content="https://ofisu.aistudiobooth.com/a/og.jpg"><meta property="og:url" content="https://ofisu.aistudiobooth.com/"><meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="a/icon-192.png"><link rel="apple-touch-icon" href="a/icon-180.png"><!--PIXEL-->
+<link rel="icon" href="a/icon-192.png"><link rel="apple-touch-icon" href="a/icon-180.png"><script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1344051311218721');fbq('track','PageView',{content_name:'ofisu'});</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -413,8 +413,8 @@ footer{padding-block:2rem;color:var(--muted);font-size:.9rem;text-align:center}
 
 <section class="stage" id="start" style="padding-top:2rem"><div class="wrap">
   <div class="final rv"><div class="bgword">HELLO</div><h2>Give your AI team an office.</h2><p>One month free. No card needed to look around.</p>
-    <form id="wl" novalidate><label for="em" style="position:absolute;left:-9999px">Email</label><input id="em" type="email" placeholder="you@company.com" autocomplete="email"><button class="btn" type="submit">Start my free month</button></form>
-    <small id="wlmsg">Early access list opens soon.</small></div>
+    <form id="wl" novalidate><label for="em" style="position:absolute;left:-9999px">Email</label><input id="em" type="email" placeholder="you@company.com" autocomplete="email"><button class="btn" type="submit">Get early access</button></form>
+    <small id="wlmsg">Be first in. No card needed.</small></div>
 </div></section>
 </main>
 <footer><b class="logo" style="font-size:1.1rem">ofisu<span>.</span></b> · ofisu.ai · Made in Malaysia</footer>
@@ -422,7 +422,14 @@ footer{padding-block:2rem;color:var(--muted);font-size:.9rem;text-align:center}
 <script>
 fetch('https://ofisu-demo.onrender.com/', { mode: 'no-cors', cache: 'no-store' }).catch(() => {});
 const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
-document.getElementById('wl').addEventListener('submit', e => { e.preventDefault(); document.getElementById('wlmsg').textContent = 'Thanks. The early access list opens very soon, please check back.'; });
+document.getElementById('wl').addEventListener('submit', async e => { e.preventDefault(); const em = document.getElementById('em'), msg = document.getElementById('wlmsg'), btn = e.target.querySelector('button');
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em.value.trim())) { msg.textContent = 'Please type a real email address.'; em.focus(); return; }
+  btn.disabled = true; msg.textContent = 'Sending...';
+  try { const q = new URLSearchParams(location.search), r = await fetch('https://formsubmit.co/ajax/aistudioboothglobal@gmail.com', { method: 'POST', headers: { 'content-type': 'application/json', accept: 'application/json' },
+      body: JSON.stringify({ email: em.value.trim(), _subject: 'Ofisu early access: new sign-up', _template: 'table', page: location.href, source: q.get('utm_source') || q.get('fbclid') ? 'ad' : 'direct', campaign: q.get('utm_campaign') || '' }) });
+    if (!r.ok) throw 0; msg.textContent = "You're on the list. We'll email you when your office is ready."; em.value = ''; window.fbq && fbq('track', 'Lead', { content_name: 'ofisu_early_access' });
+  } catch { msg.textContent = 'Could not send. Please try again in a minute.'; } btn.disabled = false; });
+document.querySelectorAll('a[href$="/app"]').forEach(a => a.addEventListener('click', () => window.fbq && fbq('trackCustom', 'TryDemo', { content_name: 'ofisu' })));
 
 // reveal on scroll
 const rio = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); rio.unobserve(e.target); } }), { threshold: .15 });
