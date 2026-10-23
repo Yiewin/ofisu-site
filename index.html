@@ -232,7 +232,7 @@ footer{padding-block:2rem;color:var(--muted);font-size:.9rem;text-align:center}
 <div class="draft">Draft for review. Not live yet.</div>
 <nav><div class="wrap"><div class="bar"><a class="logo" href="#top">ofisu<span>.</span></a>
   <div class="links"><a href="#demo">Demo</a><a href="#industries">Industries</a><a href="#offices">Offices</a><a href="#pricing">Pricing</a></div>
-  <a class="btn" href="#start">Try free</a></div></div></nav>
+  <a class="btn" href="https://ofisu-demo.onrender.com/app">Try the demo</a></div></div></nav>
 
 <main id="top">
 <!-- HERO -->
@@ -243,7 +243,7 @@ footer{padding-block:2rem;color:var(--muted);font-size:.9rem;text-align:center}
     <div class="copy rv"><span class="kicker">AI team · Real office</span>
       <h1>Your AI team, in an office you can see.</h1>
       <p class="sub">See who's working. Give tasks by chat. Watch your goals move.</p>
-      <div class="ctas"><a class="btn" href="#start">Start free month</a><a class="btn ghost" href="#demo">Watch it work</a></div>
+      <div class="ctas"><a class="btn" href="https://ofisu-demo.onrender.com/app">Try the live demo</a><a class="btn ghost" href="#demo">Watch it work</a></div>
     </div>
     <div class="shot rv">
       <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
@@ -418,8 +418,9 @@ footer{padding-block:2rem;color:var(--muted);font-size:.9rem;text-align:center}
 </div></section>
 </main>
 <footer><b class="logo" style="font-size:1.1rem">ofisu<span>.</span></b> · ofisu.ai · Made in Malaysia</footer>
-<div class="dock"><a class="btn" href="#start">Try free for a month</a></div>
+<div class="dock"><a class="btn" href="https://ofisu-demo.onrender.com/app">Try the live demo, free</a></div>
 <script>
+fetch('https://ofisu-demo.onrender.com/', { mode: 'no-cors', cache: 'no-store' }).catch(() => {});
 const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
 document.getElementById('wl').addEventListener('submit', e => { e.preventDefault(); document.getElementById('wlmsg').textContent = 'Thanks. The early access list opens very soon, please check back.'; });
 
