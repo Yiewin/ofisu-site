@@ -425,7 +425,7 @@ const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
 document.getElementById('wl').addEventListener('submit', async e => { e.preventDefault(); const em = document.getElementById('em'), msg = document.getElementById('wlmsg'), btn = e.target.querySelector('button');
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em.value.trim())) { msg.textContent = 'Please type a real email address.'; em.focus(); return; }
   btn.disabled = true; msg.textContent = 'Sending...';
-  try { const q = new URLSearchParams(location.search), r = await fetch('https://formsubmit.co/ajax/aistudioboothglobal@gmail.com', { method: 'POST', headers: { 'content-type': 'application/json', accept: 'application/json' },
+  try { const q = new URLSearchParams(location.search), r = await fetch('https://formsubmit.co/ajax/ac0c7c222792d9b88fb79d85041dd05c', { method: 'POST', headers: { 'content-type': 'application/json', accept: 'application/json' },
       body: JSON.stringify({ email: em.value.trim(), _subject: 'Ofisu early access: new sign-up', _template: 'table', page: location.href, source: q.get('utm_source') || q.get('fbclid') ? 'ad' : 'direct', campaign: q.get('utm_campaign') || '' }) });
     if (!r.ok) throw 0; msg.textContent = "You're on the list. We'll email you when your office is ready."; em.value = ''; window.fbq && fbq('track', 'Lead', { content_name: 'ofisu_early_access' });
   } catch { msg.textContent = 'Could not send. Please try again in a minute.'; } btn.disabled = false; });
